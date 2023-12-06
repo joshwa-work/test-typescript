@@ -1,6 +1,8 @@
-import recurringPaymentQueuePaymentDue from './recurring-payment-queue-payment-due';
+import getNextBillingDateMonthlyFailed from './next-billing-date-monthly-failed';
 
-recurringPaymentQueuePaymentDue({
-  currentDate: '2024-10-14',
-  type: 'NextMonthsary+14',
+const nextBillingDate = getNextBillingDateMonthlyFailed({
+  originalDueDate: '2024-02-19T16:00:00Z',
+  tScenario: 'NextT+1',
+  collectionTime: 'PM',
 });
+console.log(nextBillingDate.format('YYYY-MM-DD'));
