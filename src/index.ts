@@ -1,8 +1,16 @@
-import getNextBillingDateMonthlyFailed from './next-billing-date-monthly-failed';
+import fs from 'fs';
 
-const nextBillingDate = getNextBillingDateMonthlyFailed({
-  originalDueDate: '2024-02-19T16:00:00Z',
-  tScenario: 'NextT+1',
-  collectionTime: 'PM',
-});
-console.log(nextBillingDate.format('YYYY-MM-DD'));
+import filterDuePayments from './filter-due-payments';
+
+const duePayments = fs.readFileSync('src/data.json', 'utf8');
+const frequency = 'Annually';
+const productCode = 'PhGCDCvPv1';
+const policyNumber = '';
+
+const result = filterDuePayments(
+  JSON.parse(duePayments),
+  frequency,
+  productCode,
+  policyNumber,
+);
+console.log(result);
