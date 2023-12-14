@@ -1,16 +1,11 @@
-import fs from 'fs';
+const allowedFrequency = {
+    monthly: "MONTHLY",
+    annually: "ANNUALLY",
+};
+const frequency = '';
 
-import filterDuePayments from './filter-due-payments';
-
-const duePayments = fs.readFileSync('src/data.json', 'utf8');
-const frequency = 'Annually';
-const productCode = 'PhGCDCvPv1';
-const policyNumber = '';
-
-const result = filterDuePayments(
-  JSON.parse(duePayments),
-  frequency,
-  productCode,
-  policyNumber,
-);
-console.log(result);
+if ([allowedFrequency.monthly, allowedFrequency.annually].includes(frequency.toUpperCase())) {
+    console.log('Skip T+31');
+} else {
+    console.log('Process Payment');
+}
